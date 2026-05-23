@@ -1,0 +1,1475 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Behint Benjamin Christopher — Portfolio</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=DM+Mono:wght@300;400;500&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink:      #0D0D14;
+    --paper:    #F5F0E8;
+    --gold:     #C8963E;
+    --gold-lt:  #E8B96A;
+    --slate:    #2A3547;
+    --mist:     #8A9BB0;
+    --cream:    #FAF7F2;
+    --accent:   #D64F2D;
+    --green:    #2D6A4F;
+    --mono:     'DM Mono', monospace;
+    --serif:    'Playfair Display', serif;
+    --sans:     'DM Sans', sans-serif;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--ink);
+    color: var(--paper);
+    font-family: var(--sans);
+    font-size: 16px;
+    line-height: 1.6;
+    overflow-x: hidden;
+  }
+
+  /* ── NOISE TEXTURE OVERLAY ── */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+    pointer-events: none;
+    z-index: 0;
+    opacity: 0.6;
+  }
+
+  /* ── NAVIGATION ── */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1.2rem 3rem;
+    background: rgba(13,13,20,0.85);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(200,150,62,0.15);
+  }
+
+  .nav-logo {
+    font-family: var(--mono);
+    font-size: 0.75rem;
+    letter-spacing: 0.15em;
+    color: var(--gold);
+    text-transform: uppercase;
+  }
+
+  .nav-links {
+    display: flex;
+    gap: 2.5rem;
+    list-style: none;
+  }
+
+  .nav-links a {
+    font-family: var(--mono);
+    font-size: 0.7rem;
+    letter-spacing: 0.12em;
+    color: var(--mist);
+    text-decoration: none;
+    text-transform: uppercase;
+    transition: color 0.2s;
+  }
+
+  .nav-links a:hover { color: var(--gold); }
+
+  /* ── HERO ── */
+  .hero {
+    position: relative;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding: 0 3rem 5rem;
+    overflow: hidden;
+  }
+
+  .hero-grid {
+    position: absolute;
+    inset: 0;
+    background-image:
+      linear-gradient(rgba(200,150,62,0.04) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(200,150,62,0.04) 1px, transparent 1px);
+    background-size: 60px 60px;
+    animation: gridDrift 20s linear infinite;
+  }
+
+  @keyframes gridDrift {
+    0%   { background-position: 0 0; }
+    100% { background-position: 60px 60px; }
+  }
+
+  .hero-tag {
+    font-family: var(--mono);
+    font-size: 0.7rem;
+    letter-spacing: 0.2em;
+    color: var(--gold);
+    text-transform: uppercase;
+    margin-bottom: 1.5rem;
+    opacity: 0;
+    animation: fadeUp 0.8s 0.2s forwards;
+  }
+
+  .hero-name {
+    font-family: var(--serif);
+    font-size: clamp(3.5rem, 8vw, 7rem);
+    font-weight: 900;
+    line-height: 0.95;
+    color: var(--paper);
+    margin-bottom: 1rem;
+    opacity: 0;
+    animation: fadeUp 0.8s 0.4s forwards;
+  }
+
+  .hero-name span { color: var(--gold); }
+
+  .hero-title {
+    font-family: var(--sans);
+    font-size: clamp(1rem, 2vw, 1.3rem);
+    font-weight: 300;
+    color: var(--mist);
+    max-width: 600px;
+    margin-bottom: 2.5rem;
+    opacity: 0;
+    animation: fadeUp 0.8s 0.6s forwards;
+  }
+
+  .hero-badges {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.6rem;
+    opacity: 0;
+    animation: fadeUp 0.8s 0.8s forwards;
+  }
+
+  .badge {
+    font-family: var(--mono);
+    font-size: 0.65rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 0.4rem 0.9rem;
+    border: 1px solid;
+    border-radius: 2px;
+  }
+
+  .badge-gold  { border-color: var(--gold);   color: var(--gold); }
+  .badge-mist  { border-color: var(--mist);   color: var(--mist); }
+  .badge-accent{ border-color: var(--accent); color: var(--accent); }
+  .badge-green { border-color: var(--green);  color: #52b788; }
+
+  .hero-scroll {
+    position: absolute;
+    bottom: 2rem;
+    right: 3rem;
+    font-family: var(--mono);
+    font-size: 0.65rem;
+    letter-spacing: 0.15em;
+    color: var(--mist);
+    text-transform: uppercase;
+    writing-mode: vertical-rl;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    opacity: 0;
+    animation: fadeUp 0.8s 1.2s forwards;
+  }
+
+  .hero-scroll::after {
+    content: '';
+    display: block;
+    width: 1px;
+    height: 60px;
+    background: linear-gradient(var(--gold), transparent);
+    animation: scrollLine 2s ease-in-out infinite;
+  }
+
+  @keyframes scrollLine {
+    0%, 100% { transform: scaleY(1); opacity: 1; }
+    50%       { transform: scaleY(0.5); opacity: 0.4; }
+  }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(24px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  /* ── SECTIONS ── */
+  section {
+    position: relative;
+    z-index: 1;
+    padding: 6rem 3rem;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  .section-label {
+    font-family: var(--mono);
+    font-size: 0.65rem;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 0.8rem;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+  }
+
+  .section-label::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: linear-gradient(90deg, rgba(200,150,62,0.4), transparent);
+    max-width: 200px;
+  }
+
+  .section-title {
+    font-family: var(--serif);
+    font-size: clamp(2rem, 4vw, 3.2rem);
+    font-weight: 700;
+    color: var(--paper);
+    margin-bottom: 3rem;
+    line-height: 1.15;
+  }
+
+  /* ── ABOUT ── */
+  .about-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    align-items: start;
+  }
+
+  .about-text {
+    font-size: 1.05rem;
+    color: rgba(245,240,232,0.8);
+    line-height: 1.8;
+    font-weight: 300;
+  }
+
+  .about-text p + p { margin-top: 1.2rem; }
+
+  .about-text strong { color: var(--gold); font-weight: 500; }
+
+  .stats-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem;
+  }
+
+  .stat-card {
+    padding: 1.5rem;
+    border: 1px solid rgba(200,150,62,0.2);
+    background: rgba(200,150,62,0.03);
+    position: relative;
+    overflow: hidden;
+    transition: border-color 0.3s, background 0.3s;
+  }
+
+  .stat-card:hover {
+    border-color: rgba(200,150,62,0.5);
+    background: rgba(200,150,62,0.07);
+  }
+
+  .stat-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0;
+    width: 3px; height: 100%;
+    background: var(--gold);
+    transform: scaleY(0);
+    transform-origin: bottom;
+    transition: transform 0.3s;
+  }
+
+  .stat-card:hover::before { transform: scaleY(1); }
+
+  .stat-num {
+    font-family: var(--serif);
+    font-size: 2.5rem;
+    font-weight: 900;
+    color: var(--gold);
+    line-height: 1;
+  }
+
+  .stat-label {
+    font-family: var(--mono);
+    font-size: 0.65rem;
+    letter-spacing: 0.1em;
+    color: var(--mist);
+    text-transform: uppercase;
+    margin-top: 0.4rem;
+  }
+
+  /* ── EXPERTISE ── */
+  .expertise-bg {
+    background: rgba(42,53,71,0.3);
+    border-top: 1px solid rgba(200,150,62,0.1);
+    border-bottom: 1px solid rgba(200,150,62,0.1);
+  }
+
+  .expertise-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+  }
+
+  .exp-card {
+    padding: 2rem;
+    background: rgba(13,13,20,0.6);
+    border: 1px solid rgba(200,150,62,0.12);
+    position: relative;
+    transition: transform 0.3s, border-color 0.3s;
+  }
+
+  .exp-card:hover {
+    transform: translateY(-4px);
+    border-color: rgba(200,150,62,0.4);
+  }
+
+  .exp-icon {
+    font-size: 1.8rem;
+    margin-bottom: 1rem;
+  }
+
+  .exp-title {
+    font-family: var(--serif);
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: var(--paper);
+    margin-bottom: 0.6rem;
+  }
+
+  .exp-desc {
+    font-size: 0.85rem;
+    color: var(--mist);
+    line-height: 1.6;
+  }
+
+  .exp-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+    margin-top: 1rem;
+  }
+
+  .exp-tag {
+    font-family: var(--mono);
+    font-size: 0.6rem;
+    letter-spacing: 0.08em;
+    color: var(--gold);
+    background: rgba(200,150,62,0.1);
+    padding: 0.2rem 0.5rem;
+    border-radius: 2px;
+  }
+
+  /* ── PROJECTS ── */
+  .projects-list { display: flex; flex-direction: column; gap: 2rem; }
+
+  .project-card {
+    display: grid;
+    grid-template-columns: 80px 1fr auto;
+    gap: 2rem;
+    align-items: start;
+    padding: 2rem;
+    background: rgba(42,53,71,0.2);
+    border: 1px solid rgba(138,155,176,0.15);
+    position: relative;
+    transition: background 0.3s, border-color 0.3s;
+    cursor: default;
+  }
+
+  .project-card:hover {
+    background: rgba(42,53,71,0.4);
+    border-color: rgba(200,150,62,0.3);
+  }
+
+  .project-num {
+    font-family: var(--serif);
+    font-size: 3rem;
+    font-weight: 900;
+    color: rgba(200,150,62,0.2);
+    line-height: 1;
+    user-select: none;
+  }
+
+  .project-body {}
+
+  .project-type {
+    font-family: var(--mono);
+    font-size: 0.62rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 0.4rem;
+  }
+
+  .project-title {
+    font-family: var(--serif);
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: var(--paper);
+    margin-bottom: 0.6rem;
+  }
+
+  .project-desc {
+    font-size: 0.9rem;
+    color: rgba(245,240,232,0.65);
+    line-height: 1.7;
+    margin-bottom: 1rem;
+  }
+
+  .project-mechanics {
+    margin-top: 0.8rem;
+  }
+
+  .project-mechanics-title {
+    font-family: var(--mono);
+    font-size: 0.6rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--mist);
+    margin-bottom: 0.4rem;
+  }
+
+  .mechanic-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 0.2rem;
+  }
+
+  .mechanic-list li {
+    font-size: 0.82rem;
+    color: rgba(245,240,232,0.6);
+    padding-left: 1rem;
+    position: relative;
+  }
+
+  .mechanic-list li::before {
+    content: '▸';
+    position: absolute;
+    left: 0;
+    color: var(--gold);
+    font-size: 0.7rem;
+  }
+
+  .project-meta {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 0.6rem;
+    min-width: 140px;
+  }
+
+  .meta-engine {
+    font-family: var(--mono);
+    font-size: 0.65rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--paper);
+    background: rgba(200,150,62,0.15);
+    border: 1px solid rgba(200,150,62,0.3);
+    padding: 0.3rem 0.7rem;
+    border-radius: 2px;
+  }
+
+  .meta-tag {
+    font-family: var(--mono);
+    font-size: 0.6rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--mist);
+    background: rgba(138,155,176,0.08);
+    border: 1px solid rgba(138,155,176,0.2);
+    padding: 0.25rem 0.6rem;
+    border-radius: 2px;
+    text-align: center;
+  }
+
+  .ip-badge {
+    font-family: var(--mono);
+    font-size: 0.58rem;
+    letter-spacing: 0.08em;
+    color: #52b788;
+    background: rgba(82,183,136,0.08);
+    border: 1px solid rgba(82,183,136,0.25);
+    padding: 0.25rem 0.6rem;
+    border-radius: 2px;
+    text-align: center;
+  }
+
+  /* ── SERIOUS GAME DESIGN PROCESS ── */
+  .process-bg {
+    background: linear-gradient(135deg, rgba(42,53,71,0.4) 0%, rgba(13,13,20,0.8) 100%);
+    border-top: 1px solid rgba(200,150,62,0.12);
+    border-bottom: 1px solid rgba(200,150,62,0.12);
+  }
+
+  .process-steps {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 0;
+    position: relative;
+  }
+
+  .process-steps::before {
+    content: '';
+    position: absolute;
+    top: 2rem;
+    left: 10%;
+    right: 10%;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--gold), transparent);
+  }
+
+  .step {
+    padding: 1rem;
+    text-align: center;
+    position: relative;
+  }
+
+  .step-dot {
+    width: 2.5rem;
+    height: 2.5rem;
+    border-radius: 50%;
+    background: var(--ink);
+    border: 2px solid var(--gold);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 1rem;
+    font-family: var(--mono);
+    font-size: 0.7rem;
+    color: var(--gold);
+    position: relative;
+    z-index: 1;
+  }
+
+  .step-title {
+    font-family: var(--sans);
+    font-size: 0.78rem;
+    font-weight: 600;
+    color: var(--paper);
+    margin-bottom: 0.4rem;
+  }
+
+  .step-desc {
+    font-size: 0.72rem;
+    color: var(--mist);
+    line-height: 1.5;
+  }
+
+  .process-principles {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+    margin-top: 3rem;
+  }
+
+  .principle {
+    padding: 1.5rem;
+    border-left: 2px solid var(--gold);
+    background: rgba(200,150,62,0.03);
+  }
+
+  .principle-title {
+    font-family: var(--serif);
+    font-size: 1rem;
+    font-weight: 700;
+    color: var(--gold);
+    margin-bottom: 0.5rem;
+  }
+
+  .principle-desc {
+    font-size: 0.82rem;
+    color: var(--mist);
+    line-height: 1.6;
+  }
+
+  /* ── EXPERIENCE TIMELINE ── */
+  .timeline { position: relative; padding-left: 2rem; }
+
+  .timeline::before {
+    content: '';
+    position: absolute;
+    left: 0; top: 0; bottom: 0;
+    width: 1px;
+    background: linear-gradient(var(--gold), rgba(200,150,62,0.1));
+  }
+
+  .timeline-item {
+    position: relative;
+    padding: 0 0 2.5rem 2rem;
+  }
+
+  .timeline-item::before {
+    content: '';
+    position: absolute;
+    left: -0.35rem;
+    top: 0.3rem;
+    width: 0.7rem;
+    height: 0.7rem;
+    border-radius: 50%;
+    background: var(--gold);
+    border: 2px solid var(--ink);
+  }
+
+  .timeline-period {
+    font-family: var(--mono);
+    font-size: 0.62rem;
+    letter-spacing: 0.12em;
+    color: var(--gold);
+    text-transform: uppercase;
+    margin-bottom: 0.3rem;
+  }
+
+  .timeline-role {
+    font-family: var(--serif);
+    font-size: 1.15rem;
+    font-weight: 700;
+    color: var(--paper);
+    margin-bottom: 0.2rem;
+  }
+
+  .timeline-org {
+    font-size: 0.85rem;
+    color: var(--mist);
+    margin-bottom: 0.8rem;
+  }
+
+  .timeline-points {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 0.3rem;
+  }
+
+  .timeline-points li {
+    font-size: 0.85rem;
+    color: rgba(245,240,232,0.65);
+    padding-left: 1rem;
+    position: relative;
+    line-height: 1.5;
+  }
+
+  .timeline-points li::before {
+    content: '—';
+    position: absolute;
+    left: 0;
+    color: var(--gold);
+    font-size: 0.75rem;
+  }
+
+  /* ── SKILLS ── */
+  .skills-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2rem;
+  }
+
+  .skill-group {}
+
+  .skill-group-title {
+    font-family: var(--mono);
+    font-size: 0.65rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 1rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid rgba(200,150,62,0.2);
+  }
+
+  .skill-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.5rem 0;
+    border-bottom: 1px solid rgba(138,155,176,0.08);
+  }
+
+  .skill-name {
+    font-size: 0.85rem;
+    color: rgba(245,240,232,0.8);
+  }
+
+  .skill-bar {
+    width: 120px;
+    height: 3px;
+    background: rgba(138,155,176,0.15);
+    border-radius: 2px;
+    overflow: hidden;
+  }
+
+  .skill-fill {
+    height: 100%;
+    background: linear-gradient(90deg, var(--gold), var(--gold-lt));
+    border-radius: 2px;
+    transition: width 1s ease;
+  }
+
+  /* ── LANGUAGES ── */
+  .lang-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
+    max-width: 600px;
+  }
+
+  .lang-card {
+    padding: 1.5rem;
+    border: 1px solid rgba(200,150,62,0.2);
+    background: rgba(200,150,62,0.03);
+    text-align: center;
+  }
+
+  .lang-name {
+    font-family: var(--serif);
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: var(--paper);
+    margin-bottom: 0.3rem;
+  }
+
+  .lang-level {
+    font-family: var(--mono);
+    font-size: 0.65rem;
+    letter-spacing: 0.1em;
+    color: var(--gold);
+    text-transform: uppercase;
+    margin-bottom: 0.4rem;
+  }
+
+  .lang-note {
+    font-size: 0.78rem;
+    color: var(--mist);
+    line-height: 1.5;
+  }
+
+  /* ── CERTIFICATIONS ── */
+  .cert-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
+  }
+
+  .cert-card {
+    padding: 1.5rem 2rem;
+    background: rgba(42,53,71,0.3);
+    border: 1px solid rgba(138,155,176,0.15);
+    display: flex;
+    gap: 1.2rem;
+    align-items: flex-start;
+    transition: border-color 0.3s;
+  }
+
+  .cert-card:hover { border-color: rgba(200,150,62,0.3); }
+
+  .cert-icon {
+    font-size: 1.8rem;
+    flex-shrink: 0;
+  }
+
+  .cert-body {}
+
+  .cert-name {
+    font-family: var(--sans);
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: var(--paper);
+    margin-bottom: 0.3rem;
+    line-height: 1.4;
+  }
+
+  .cert-issuer {
+    font-family: var(--mono);
+    font-size: 0.62rem;
+    letter-spacing: 0.08em;
+    color: var(--gold);
+    text-transform: uppercase;
+    margin-bottom: 0.3rem;
+  }
+
+  .cert-modules {
+    font-size: 0.75rem;
+    color: var(--mist);
+    line-height: 1.5;
+    margin-top: 0.4rem;
+  }
+
+  .cert-link {
+    display: inline-block;
+    margin-top: 0.5rem;
+    font-family: var(--mono);
+    font-size: 0.6rem;
+    letter-spacing: 0.08em;
+    color: var(--gold);
+    text-decoration: none;
+    border-bottom: 1px solid rgba(200,150,62,0.3);
+    transition: border-color 0.2s;
+  }
+
+  .cert-link:hover { border-color: var(--gold); }
+
+  /* ── CONTACT / FOOTER ── */
+  .contact-section {
+    background: rgba(42,53,71,0.3);
+    border-top: 1px solid rgba(200,150,62,0.1);
+  }
+
+  .contact-grid {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 4rem;
+    align-items: center;
+  }
+
+  .contact-heading {
+    font-family: var(--serif);
+    font-size: clamp(2rem, 4vw, 3rem);
+    font-weight: 900;
+    color: var(--paper);
+    line-height: 1.1;
+    margin-bottom: 1.5rem;
+  }
+
+  .contact-heading span { color: var(--gold); }
+
+  .contact-links {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .contact-item {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    font-size: 0.9rem;
+    color: var(--mist);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+
+  .contact-item:hover { color: var(--gold); }
+
+  .contact-item-label {
+    font-family: var(--mono);
+    font-size: 0.6rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--gold);
+    min-width: 60px;
+  }
+
+  .fao-note {
+    margin-top: 1.5rem;
+    padding: 1.2rem 1.5rem;
+    background: rgba(82,183,136,0.06);
+    border: 1px solid rgba(82,183,136,0.2);
+    border-left: 3px solid #52b788;
+  }
+
+  .fao-note-title {
+    font-family: var(--mono);
+    font-size: 0.62rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: #52b788;
+    margin-bottom: 0.4rem;
+  }
+
+  .fao-note-text {
+    font-size: 0.82rem;
+    color: rgba(245,240,232,0.65);
+    line-height: 1.6;
+  }
+
+  .footer {
+    text-align: center;
+    padding: 2rem;
+    font-family: var(--mono);
+    font-size: 0.6rem;
+    letter-spacing: 0.12em;
+    color: rgba(138,155,176,0.4);
+    text-transform: uppercase;
+    border-top: 1px solid rgba(138,155,176,0.08);
+  }
+
+  /* ── DIVIDER ── */
+  .divider {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 3rem;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(200,150,62,0.2), transparent);
+  }
+
+  @media (max-width: 900px) {
+    nav { padding: 1rem 1.5rem; }
+    .nav-links { display: none; }
+    section { padding: 4rem 1.5rem; }
+    .hero { padding: 0 1.5rem 4rem; }
+    .about-grid,
+    .expertise-grid,
+    .skills-grid,
+    .cert-grid,
+    .contact-grid { grid-template-columns: 1fr; }
+    .process-steps { grid-template-columns: 1fr 1fr; }
+    .process-steps::before { display: none; }
+    .process-principles { grid-template-columns: 1fr; }
+    .project-card { grid-template-columns: 60px 1fr; }
+    .project-meta { display: none; }
+    .lang-grid { grid-template-columns: 1fr 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">BJC · Portfolio</div>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#expertise">Expertise</a></li>
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#process">Game Design</a></li>
+    <li><a href="#experience">Experience</a></li>
+    <li><a href="#certifications">Credentials</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-grid"></div>
+  <div class="hero-tag">Portfolio · Serious Game & VR Simulation Specialist</div>
+  <h1 class="hero-name">Behint<br><span>Benjamin</span><br>Christopher</h1>
+  <p class="hero-title">Game designer, immersive learning architect and VR simulation developer — translating complex real-world systems into engaging, human-centred interactive experiences.</p>
+  <div class="hero-badges">
+    <span class="badge badge-gold">Serious Game Design</span>
+    <span class="badge badge-gold">VR / XR Simulation</span>
+    <span class="badge badge-mist">Godot · Unity 3D</span>
+    <span class="badge badge-mist">Participatory Facilitation</span>
+    <span class="badge badge-accent">French C2 · English C</span>
+    <span class="badge badge-green">Gabon · South Africa</span>
+  </div>
+  <div class="hero-scroll">Scroll</div>
+</div>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="section-label">01 · About</div>
+  <h2 class="section-title">Turning complexity<br>into play.</h2>
+  <div class="about-grid">
+    <div class="about-text">
+      <p>I am a <strong>creative technologist and serious game designer</strong> with over 6 years of experience building immersive simulations, game-based learning environments and interactive 3D platforms that make complex systems understandable, engaging and actionable.</p>
+      <p>Currently at <strong>STS3D</strong>, I design and develop VR training simulations for the global mining and industrial sector using <strong>Godot</strong> as the primary engine — applying game mechanics, branching scenario design and psychomotor learning principles to create safety-critical training experiences deployed across South Africa, Argentina and Kazakhstan.</p>
+      <p>Born and raised in <strong>Gabon</strong> — a Central African nation with rich agrifood and ecological systems — and having built my career in South Africa, I bring a deep cross-cultural perspective and genuine bilingual (French C2 / English C) facilitation capability to every project.</p>
+      <p>My work sits at the intersection of <strong>game design, instructional design and immersive technology</strong> — and I am passionate about applying this to high-stakes policy, development and learning challenges.</p>
+    </div>
+    <div class="stats-grid">
+      <div class="stat-card">
+        <div class="stat-num">6+</div>
+        <div class="stat-label">Years designing immersive experiences</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-num">3</div>
+        <div class="stat-label">Continents where simulations are deployed</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-num">2</div>
+        <div class="stat-label">Languages — French (native) & English (C)</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-num">8+</div>
+        <div class="stat-label">Serious game & simulation projects delivered</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- EXPERTISE -->
+<div class="expertise-bg">
+<section id="expertise" style="max-width:1200px;margin:0 auto;">
+  <div class="section-label">02 · Expertise</div>
+  <h2 class="section-title">What I bring<br>to the table.</h2>
+  <div class="expertise-grid">
+    <div class="exp-card">
+      <div class="exp-icon">🎮</div>
+      <div class="exp-title">Serious Game Design</div>
+      <div class="exp-desc">Game mechanics, narrative structures, branching scenario design, consequence-based feedback systems and pedagogical frameworks tailored to complex real-world challenges.</div>
+      <div class="exp-tags">
+        <span class="exp-tag">Mechanics Design</span>
+        <span class="exp-tag">Narrative</span>
+        <span class="exp-tag">Pedagogy</span>
+        <span class="exp-tag">Scenario Writing</span>
+      </div>
+    </div>
+    <div class="exp-card">
+      <div class="exp-icon">🥽</div>
+      <div class="exp-title">VR / XR Simulation</div>
+      <div class="exp-desc">High-fidelity virtual reality environments using Godot and Unity 3D — physics simulation, XR hardware integration, performance optimisation and immersive spatial design.</div>
+      <div class="exp-tags">
+        <span class="exp-tag">Godot 4</span>
+        <span class="exp-tag">Unity 3D</span>
+        <span class="exp-tag">Meta Quest</span>
+        <span class="exp-tag">OpenXR</span>
+      </div>
+    </div>
+    <div class="exp-card">
+      <div class="exp-icon">🧭</div>
+      <div class="exp-title">Facilitation & Debriefing</div>
+      <div class="exp-desc">Facilitating immersive simulation experiences for diverse stakeholder groups — managing group dynamics, structured debriefing and translating game insights into actionable real-world outcomes.</div>
+      <div class="exp-tags">
+        <span class="exp-tag">Debriefing</span>
+        <span class="exp-tag">Stakeholder Engagement</span>
+        <span class="exp-tag">Co-creation</span>
+      </div>
+    </div>
+    <div class="exp-card">
+      <div class="exp-icon">🌍</div>
+      <div class="exp-title">Cross-Cultural Design</div>
+      <div class="exp-desc">Adapting game content and facilitation for diverse cultural, linguistic and professional audiences — with direct experience across Francophone Africa, Southern Africa, South America and Central Asia.</div>
+      <div class="exp-tags">
+        <span class="exp-tag">French C2</span>
+        <span class="exp-tag">English C</span>
+        <span class="exp-tag">Multicultural</span>
+      </div>
+    </div>
+    <div class="exp-card">
+      <div class="exp-icon">⚙️</div>
+      <div class="exp-title">Technical Development</div>
+      <div class="exp-desc">Full-stack development of custom game platforms, interactive web tools and API integrations — GDScript, C#, C++, JavaScript, Python and SQL across multiple delivery environments.</div>
+      <div class="exp-tags">
+        <span class="exp-tag">GDScript</span>
+        <span class="exp-tag">C#</span>
+        <span class="exp-tag">C++</span>
+        <span class="exp-tag">Python</span>
+      </div>
+    </div>
+    <div class="exp-card">
+      <div class="exp-icon">📋</div>
+      <div class="exp-title">Capacity Development</div>
+      <div class="exp-desc">Designing and delivering training programmes, methodological guidelines and documentation for game-based facilitation — supporting partners and staff to integrate serious games into their own programmes.</div>
+      <div class="exp-tags">
+        <span class="exp-tag">Training Design</span>
+        <span class="exp-tag">Documentation</span>
+        <span class="exp-tag">Mentoring</span>
+      </div>
+    </div>
+  </div>
+</section>
+</div>
+
+<!-- PROJECTS -->
+<section id="projects">
+  <div class="section-label">03 · Portfolio</div>
+  <h2 class="section-title">Serious games &<br>simulations.</h2>
+  <div class="projects-list">
+
+    <!-- Project 1 -->
+    <div class="project-card">
+      <div class="project-num">01</div>
+      <div class="project-body">
+        <div class="project-type">VR Serious Game · Industrial Safety · Deployed Commercially</div>
+        <div class="project-title">Underground Mining Safety Simulation Suite</div>
+        <div class="project-desc">A suite of VR serious games simulating critical underground mining operations — designed to develop psychomotor skills, reinforce safety protocols and build situational awareness in safety-critical environments. Deployed to blue-chip mining clients across three continents.</div>
+        <div class="project-mechanics">
+          <div class="project-mechanics-title">Game Mechanics & Design Elements</div>
+          <ul class="mechanic-list">
+            <li>Branching scenario system — learner decisions trigger consequence chains reflecting real operational outcomes</li>
+            <li>TARP (Trigger, Act, Review, Prevent) safety protocol decision trees embedded in gameplay</li>
+            <li>Timed challenge mechanics for drilling, bolting and blasting procedures under operational pressure</li>
+            <li>Role-specific learning pathways adapting content to operator, supervisor and safety officer profiles</li>
+            <li>Debrief integration — in-simulation scoring and decision logs feeding structured post-game reflection</li>
+            <li>Haptic feedback integration for tactile psychomotor skill development</li>
+          </ul>
+        </div>
+      </div>
+      <div class="project-meta">
+        <span class="meta-engine">Godot 4</span>
+        <span class="meta-tag">GDScript / C#</span>
+        <span class="meta-tag">VR / XR</span>
+        <span class="meta-tag">Safety Training</span>
+        <span class="meta-tag">3 Continents</span>
+        <span class="ip-badge">IP Protected — described by design intent</span>
+      </div>
+    </div>
+
+    <!-- Project 2 -->
+    <div class="project-card">
+      <div class="project-num">02</div>
+      <div class="project-body">
+        <div class="project-type">Multiplayer Interactive Experience · Personal Project</div>
+        <div class="project-title">Multiplayer Driving Game</div>
+        <div class="project-desc">A real-time multiplayer driving experience demonstrating concurrent multi-user session management, networked physics synchronisation and competitive game mechanics. Built as a personal project to explore multiplayer architecture patterns applicable to policy simulation and collaborative serious game design.</div>
+        <div class="project-mechanics">
+          <div class="project-mechanics-title">Game Mechanics & Design Elements</div>
+          <ul class="mechanic-list">
+            <li>Real-time multiplayer using Photon PUN — low-latency state synchronisation across concurrent players</li>
+            <li>Shared physical environment with collision, consequence and competitive scoring mechanics</li>
+            <li>Session management system supporting variable player counts — applicable to multi-stakeholder policy simulations</li>
+            <li>Performance-optimised rendering for smooth gameplay across hardware configurations</li>
+          </ul>
+        </div>
+      </div>
+      <div class="project-meta">
+        <span class="meta-engine">Unity 3D</span>
+        <span class="meta-tag">C# / Photon PUN</span>
+        <span class="meta-tag">Multiplayer</span>
+        <span class="meta-tag">Personal Project</span>
+        <span class="ip-badge">✓ Original Work — freely shareable</span>
+      </div>
+    </div>
+
+    <!-- Project 3 -->
+    <div class="project-card">
+      <div class="project-num">03</div>
+      <div class="project-body">
+        <div class="project-type">VR Educational Simulation · Personal Project</div>
+        <div class="project-title">VR Science Laboratory</div>
+        <div class="project-desc">An immersive virtual reality laboratory environment enabling learners to conduct experiments, interact with equipment and explore scientific concepts in a safe, consequence-free virtual space. Demonstrates serious game design principles applied to formal education contexts.</div>
+        <div class="project-mechanics">
+          <div class="project-mechanics-title">Game Mechanics & Design Elements</div>
+          <ul class="mechanic-list">
+            <li>Exploration-based learning mechanics — learner-directed discovery rather than linear instruction</li>
+            <li>Consequence simulation — incorrect procedures produce realistic (but safe) virtual outcomes</li>
+            <li>Spatial VR interaction design — grabbing, pouring, mixing and operating equipment via XR controllers</li>
+            <li>Progress feedback system reinforcing correct scientific method</li>
+          </ul>
+        </div>
+      </div>
+      <div class="project-meta">
+        <span class="meta-engine">Unity 3D</span>
+        <span class="meta-tag">VR / XR</span>
+        <span class="meta-tag">Education</span>
+        <span class="meta-tag">Personal Project</span>
+        <span class="ip-badge">✓ Original Work — freely shareable</span>
+      </div>
+    </div>
+
+    <!-- Project 4 -->
+    <div class="project-card">
+      <div class="project-num">04</div>
+      <div class="project-body">
+        <div class="project-type">VR Gamification · Personal Project</div>
+        <div class="project-title">VR Knowledge Quiz</div>
+        <div class="project-desc">A gamified VR knowledge assessment experience — demonstrating how quiz-based learning can be transformed into an immersive, spatially engaging game rather than a flat screen interaction. Applicable to policy training, awareness campaigns and capacity development contexts.</div>
+        <div class="project-mechanics">
+          <div class="project-mechanics-title">Game Mechanics & Design Elements</div>
+          <ul class="mechanic-list">
+            <li>Spatial answer selection mechanics — physically navigating to answers in 3D space</li>
+            <li>Time-pressure mechanics with adaptive difficulty based on performance</li>
+            <li>Score feedback and progress visualisation in virtual environment</li>
+            <li>Applicable framework for policy knowledge assessment and awareness games</li>
+          </ul>
+        </div>
+      </div>
+      <div class="project-meta">
+        <span class="meta-engine">Unity 3D</span>
+        <span class="meta-tag">VR Gamification</span>
+        <span class="meta-tag">Assessment</span>
+        <span class="meta-tag">Personal Project</span>
+        <span class="ip-badge">✓ Original Work — freely shareable</span>
+      </div>
+    </div>
+
+    <!-- Project 5 -->
+    <div class="project-card">
+      <div class="project-num">05</div>
+      <div class="project-body">
+        <div class="project-type">Physical + Digital Serious Game · Educational</div>
+        <div class="project-title">Robotics Challenge Game Series</div>
+        <div class="project-desc">A series of challenge-based robotics games combining physical game mechanics (Lego construction, timed tasks, point-scoring systems) with digital programming simulation — designed to develop systems thinking, collaborative problem-solving and computational reasoning in youth learners across South Africa.</div>
+        <div class="project-mechanics">
+          <div class="project-mechanics-title">Game Mechanics & Design Elements</div>
+          <ul class="mechanic-list">
+            <li>Physical-digital hybrid format — demonstrating breadth across virtual and non-virtual serious game design</li>
+            <li>Competitive team mechanics driving engagement and collaborative decision-making</li>
+            <li>Structured task sequences with escalating complexity — scaffolded learning progression</li>
+            <li>Facilitated debriefing connecting game challenges to real systems thinking concepts</li>
+            <li>Delivered for Robotics Olympiad national competitions across multiple years</li>
+          </ul>
+        </div>
+      </div>
+      <div class="project-meta">
+        <span class="meta-engine">Physical + Digital</span>
+        <span class="meta-tag">Robot C / NXT</span>
+        <span class="meta-tag">Youth Education</span>
+        <span class="meta-tag">Systems Thinking</span>
+        <span class="ip-badge">✓ Original Work — freely shareable</span>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- GAME DESIGN PROCESS -->
+<div class="process-bg">
+<section id="process" style="max-width:1200px;margin:0 auto;">
+  <div class="section-label">04 · Methodology</div>
+  <h2 class="section-title">My serious game<br>design process.</h2>
+
+  <div class="process-steps">
+    <div class="step">
+      <div class="step-dot">01</div>
+      <div class="step-title">Needs Analysis</div>
+      <div class="step-desc">Understand the learning objective, target audience, context and constraints through stakeholder interviews and systems mapping.</div>
+    </div>
+    <div class="step">
+      <div class="step-dot">02</div>
+      <div class="step-title">Mechanics Design</div>
+      <div class="step-desc">Define core game loop, feedback systems, branching logic, win/lose conditions and how mechanics mirror real-world decisions.</div>
+    </div>
+    <div class="step">
+      <div class="step-dot">03</div>
+      <div class="step-title">Prototype & Test</div>
+      <div class="step-desc">Build a rapid prototype — physical or digital — and test with a small group to validate that mechanics produce intended learning behaviours.</div>
+    </div>
+    <div class="step">
+      <div class="step-dot">04</div>
+      <div class="step-title">Develop & Refine</div>
+      <div class="step-desc">Full development in Godot or Unity, integrating narrative, 3D assets, VR hardware and performance optimisation. Iterative refinement with stakeholders.</div>
+    </div>
+    <div class="step">
+      <div class="step-dot">05</div>
+      <div class="step-title">Facilitate & Debrief</div>
+      <div class="step-desc">Run the session, manage group dynamics and lead structured debriefing — bridging game experiences to real-world insights and actionable outcomes.</div>
+    </div>
+  </div>
+
+  <div class="process-principles">
+    <div class="principle">
+      <div class="principle-title">Consequence-Driven Design</div>
+      <div class="principle-desc">Every decision in a serious game should have a meaningful consequence that reflects real-world outcomes. Players learn through cause-and-effect, not instruction.</div>
+    </div>
+    <div class="principle">
+      <div class="principle-title">The Debrief is the Game</div>
+      <div class="principle-desc">The play session generates the experience; the debrief generates the insight. I design both the game mechanics and the facilitation framework as inseparable parts of the learning experience.</div>
+    </div>
+    <div class="principle">
+      <div class="principle-title">Context Before Content</div>
+      <div class="principle-desc">Games that work in one cultural context may fail in another. I design for specific audiences, adapting language, metaphor, complexity and mechanic style to the learners — not a generic template.</div>
+    </div>
+  </div>
+</section>
+</div>
+
+<!-- EXPERIENCE -->
+<section id="experience">
+  <div class="section-label">05 · Experience</div>
+  <h2 class="section-title">Where I've<br>built things.</h2>
+  <div class="timeline">
+
+    <div class="timeline-item">
+      <div class="timeline-period">May 2024 — Present</div>
+      <div class="timeline-role">Serious Game Developer & VR Simulation Designer</div>
+      <div class="timeline-org">STS3D (Simulated Training Solutions) · South Africa · sts3d.co.za</div>
+      <ul class="timeline-points">
+        <li>Designing and developing VR serious games for global mining safety training using Godot — branching scenarios, consequence mechanics and psychomotor skill development</li>
+        <li>Collaborating with instructional designers, mining SMEs and 3D artists in Agile sprints to co-create pedagogically grounded simulation products</li>
+        <li>Adapting game content and facilitation approaches for culturally diverse audiences across South Africa, Argentina and Kazakhstan</li>
+        <li>Delivering capacity development support and technical documentation for simulation platforms</li>
+      </ul>
+    </div>
+
+    <div class="timeline-item">
+      <div class="timeline-period">September 2020 — April 2024</div>
+      <div class="timeline-role">Interactive Experience Designer & XR Developer</div>
+      <div class="timeline-org">GO4IR · Bryanston, Johannesburg</div>
+      <ul class="timeline-points">
+        <li>Designed and shipped interactive 3D/XR game-based experiences for education, industrial training and public engagement</li>
+        <li>Built multiplayer interactive environments for real-time collaborative participation — applicable to policy simulation design</li>
+        <li>Facilitated client demonstrations and training sessions for French and English-speaking stakeholders</li>
+        <li>Mentored junior developers in game design and experiential learning principles</li>
+      </ul>
+    </div>
+
+    <div class="timeline-item">
+      <div class="timeline-period">April 2017 — 2018</div>
+      <div class="timeline-role">Interactive Learning Developer</div>
+      <div class="timeline-org">Eon Reality · Hatfield, Johannesburg</div>
+      <ul class="timeline-points">
+        <li>Designed VR learning experiences combining game mechanics, 3D environments and instructional design</li>
+        <li>Facilitated experiential learning sessions for French and English-speaking client groups</li>
+      </ul>
+    </div>
+
+    <div class="timeline-item">
+      <div class="timeline-period">April 2012 — 2015</div>
+      <div class="timeline-role">Robotics Trainer & Experiential Learning Facilitator</div>
+      <div class="timeline-org">Brick Play / Eset Ambassador – University of South Africa</div>
+      <ul class="timeline-points">
+        <li>Designed and facilitated game-based robotics learning experiences for youth teams — challenge mechanics, competitive scoring and structured debriefing</li>
+        <li>Delivered capacity development sessions; mentored teams for national Robotics Olympiad competitions</li>
+      </ul>
+    </div>
+
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- SKILLS -->
+<section id="skills">
+  <div class="section-label">06 · Skills</div>
+  <h2 class="section-title">Technical &<br>professional skills.</h2>
+  <div class="skills-grid">
+    <div class="skill-group">
+      <div class="skill-group-title">Game & Simulation Development</div>
+      <div class="skill-item"><span class="skill-name">Godot 4 (GDScript / C#)</span><div class="skill-bar"><div class="skill-fill" style="width:90%"></div></div></div>
+      <div class="skill-item"><span class="skill-name">Unity 3D (C# / URP)</span><div class="skill-bar"><div class="skill-fill" style="width:85%"></div></div></div>
+      <div class="skill-item"><span class="skill-name">VR / XR Integration</span><div class="skill-bar"><div class="skill-fill" style="width:88%"></div></div></div>
+      <div class="skill-item"><span class="skill-name">3D Asset Pipeline (Blender / 3ds Max)</span><div class="skill-bar"><div class="skill-fill" style="width:80%"></div></div></div>
+      <div class="skill-item"><span class="skill-name">Multiplayer Networking</span><div class="skill-bar"><div class="skill-fill" style="width:75%"></div></div></div>
+    </div>
+    <div class="skill-group">
+      <div class="skill-group-title">Serious Game Design</div>
+      <div class="skill-item"><span class="skill-name">Game Mechanics Design</span><div class="skill-bar"><div class="skill-fill" style="width:85%"></div></div></div>
+      <div class="skill-item"><span class="skill-name">Scenario & Narrative Writing</span><div class="skill-bar"><div class="skill-fill" style="width:80%"></div></div></div>
+      <div class="skill-item"><span class="skill-name">Participatory Facilitation</span><div class="skill-bar"><div class="skill-fill" style="width:82%"></div></div></div>
+      <div class="skill-item"><span class="skill-name">Debriefing & Insight Capture</span><div class="skill-bar"><div class="skill-fill" style="width:78%"></div></div></div>
+      <div class="skill-item"><span class="skill-name">Instructional Design</span><div class="skill-bar"><div class="skill-fill" style="width:75%"></div></div></div>
+    </div>
+    <div class="skill-group">
+      <div class="skill-group-title">Programming</div>
+      <div class="skill-item"><span class="skill-name">C# / .NET</span><div class="skill-bar"><div class="skill-fill" style="width:88%"></div></div></div>
+      <div class="skill-item"><span class="skill-name">GDScript</span><div class="skill-bar"><div class="skill-fill" style="width:90%"></div></div></div>
+      <div class="skill-item"><span class="skill-name">C++</span><div class="skill-bar"><div class="skill-fill" style="width:75%"></div></div></div>
+      <div class="skill-item"><span class="skill-name">Python</span><div class="skill-bar"><div class="skill-fill" style="width:72%"></div></div></div>
+      <div class="skill-item"><span class="skill-name">JavaScript / TypeScript</span><div class="skill-bar"><div class="skill-fill" style="width:78%"></div></div></div>
+    </div>
+    <div class="skill-group">
+      <div class="skill-group-title">Collaboration & Process</div>
+      <div class="skill-item"><span class="skill-name">Agile / Scrum</span><div class="skill-bar"><div class="skill-fill" style="width:85%"></div></div></div>
+      <div class="skill-item"><span class="skill-name">Cross-cultural Communication</span><div class="skill-bar"><div class="skill-fill" style="width:90%"></div></div></div>
+      <div class="skill-item"><span class="skill-name">Technical Documentation</span><div class="skill-bar"><div class="skill-fill" style="width:80%"></div></div></div>
+      <div class="skill-item"><span class="skill-name">Stakeholder Engagement</span><div class="skill-bar"><div class="skill-fill" style="width:82%"></div></div></div>
+      <div class="skill-item"><span class="skill-name">Capacity Development</span><div class="skill-bar"><div class="skill-fill" style="width:78%"></div></div></div>
+    </div>
+  </div>
+
+  <!-- Languages -->
+  <div style="margin-top:3rem;">
+    <div class="section-label" style="margin-bottom:1.5rem;">Languages</div>
+    <div class="lang-grid">
+      <div class="lang-card">
+        <div class="lang-name">Français</div>
+        <div class="lang-level">C2 — Native</div>
+        <div class="lang-note">Born and educated in Gabon. First language. Full facilitation capability in Francophone contexts.</div>
+      </div>
+      <div class="lang-card">
+        <div class="lang-name">English</div>
+        <div class="lang-level">C — Full Professional</div>
+        <div class="lang-note">6+ years professional use across South Africa and international clients. Business, technical and facilitation fluency.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CERTIFICATIONS -->
+<section id="certifications" style="padding-top:0;">
+  <div class="section-label">07 · Credentials</div>
+  <h2 class="section-title">Education &<br>certifications.</h2>
+  <div class="cert-grid">
+    <div class="cert-card">
+      <div class="cert-icon">🎓</div>
+      <div class="cert-body">
+        <div class="cert-name">National Diploma in Information Technology</div>
+        <div class="cert-issuer">University of South Africa (UNISA) · WHED/IAU Recognised · 2016</div>
+        <div class="cert-modules">Systems Analysis & Design · Database Practice · Algorithmic Thinking · OOP · Business Informatics · Internet Programming · Networking · GUI Programming</div>
+      </div>
+    </div>
+    <div class="cert-card">
+      <div class="cert-icon">🏅</div>
+      <div class="cert-body">
+        <div class="cert-name">Google IT Automation with Python — Professional Certificate</div>
+        <div class="cert-issuer">Google / Coursera · Verified on Credly · 2024</div>
+        <div class="cert-modules">Python scripting · Git & GitHub · IT automation · Configuration management (Puppet) · REST API automation · Cloud computing · End-to-end automation projects</div>
+        <a class="cert-link" href="https://www.credly.com/badges/819d21e1-26e9-4f87-9c1d-316d79632db2/public_url" target="_blank">Verify certificate →</a>
+      </div>
+    </div>
+    <div class="cert-card">
+      <div class="cert-icon">🤖</div>
+      <div class="cert-body">
+        <div class="cert-name">Robotics in Education Certificate</div>
+        <div class="cert-issuer">University of South Africa (UNISA)</div>
+        <div class="cert-modules">Applied robotics engineering · Programming principles & flow control · Teaching methodologies · Game-based and challenge-based learning design · Facilitation of experiential learning</div>
+      </div>
+    </div>
+    <div class="cert-card">
+      <div class="cert-icon">📍</div>
+      <div class="cert-body">
+        <div class="cert-name">Primary & Secondary Education</div>
+        <div class="cert-issuer">Libreville, Gabon · Francophone System</div>
+        <div class="cert-modules">Full Francophone schooling in Gabon — providing strong bilingual academic foundations and deep cultural roots in Central Africa, directly supporting facilitation work in Francophone African contexts relevant to FAO programmes.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<div class="contact-section">
+<section id="contact" style="max-width:1200px;margin:0 auto;">
+  <div class="contact-grid">
+    <div>
+      <div class="section-label">08 · Contact</div>
+      <h2 class="contact-heading">Let's build<br>something that<br><span>matters.</span></h2>
+      <div class="fao-note">
+        <div class="fao-note-title">📎 FAO Application — Vacancy 2601062</div>
+        <div class="fao-note-text">This portfolio has been prepared in support of the application for Serious Game and Policy Game Specialist (ID: 2601062) at the FAO Office of Innovation. A full CV, letter of motivation and additional portfolio materials are available on request.</div>
+      </div>
+    </div>
+    <div class="contact-links">
+      <a class="contact-item" href="mailto:chrisbehint@gmail.com">
+        <span class="contact-item-label">Email</span>
+        chrisbehint@gmail.com
+      </a>
+      <a class="contact-item" href="tel:+27735926405">
+        <span class="contact-item-label">Phone</span>
+        +27 73 592 6405
+      </a>
+      <a class="contact-item" href="https://www.linkedin.com/in/behint-benjamin-74aab276/" target="_blank">
+        <span class="contact-item-label">LinkedIn</span>
+        behint-benjamin-74aab276
+      </a>
+      <a class="contact-item" href="https://github.com/lapingaro" target="_blank">
+        <span class="contact-item-label">GitHub</span>
+        github.com/lapingaro
+      </a>
+      <a class="contact-item" href="https://65c626e93d178.site123.me/" target="_blank">
+        <span class="contact-item-label">Portfolio</span>
+        65c626e93d178.site123.me
+      </a>
+      <div class="contact-item" style="cursor:default;">
+        <span class="contact-item-label">Location</span>
+        Johannesburg, South Africa
+      </div>
+    </div>
+  </div>
+</section>
+</div>
+
+<div class="footer">
+  © 2026 Behint Benjamin Christopher · Serious Game & VR Simulation Specialist · Portfolio v1.0
+</div>
+
+</body>
+</html>
