@@ -375,7 +375,117 @@
   }
 
   /* ── PROJECTS ── */
-  .projects-list { display: flex; flex-direction: column; gap: 2rem; }
+  .projects-list { display: flex; flex-direction: column; gap: 2.5rem; }
+
+  /* Featured project: image beside content */
+  .project-card-featured {
+    display: grid;
+    grid-template-columns: 320px 1fr;
+    gap: 0;
+    background: rgba(42,53,71,0.2);
+    border: 1px solid rgba(138,155,176,0.15);
+    position: relative;
+    transition: background 0.3s, border-color 0.3s;
+    overflow: hidden;
+  }
+  .project-card-featured:hover {
+    background: rgba(42,53,71,0.35);
+    border-color: rgba(200,150,62,0.35);
+  }
+  .project-img-panel {
+    position: relative;
+    background: rgba(13,13,20,0.8);
+    min-height: 320px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-right: 1px solid rgba(200,150,62,0.15);
+    overflow: hidden;
+  }
+  .project-img-panel img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    position: absolute;
+    inset: 0;
+    transition: transform 0.4s, opacity 0.3s;
+  }
+  .project-card-featured:hover .project-img-panel img { transform: scale(1.04); }
+  .project-img-placeholder {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 0.8rem;
+    padding: 2rem;
+    text-align: center;
+    width: 100%;
+    min-height: 320px;
+  }
+  .upload-icon { font-size: 2.2rem; opacity: 0.35; }
+  .upload-text {
+    font-family: var(--mono);
+    font-size: 0.6rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--mist);
+    opacity: 0.6;
+    line-height: 1.7;
+  }
+  .upload-hint {
+    font-size: 0.7rem;
+    color: var(--gold);
+    opacity: 0.45;
+    font-style: italic;
+  }
+  .img-corner-num {
+    position: absolute;
+    top: 0.8rem;
+    left: 0.8rem;
+    font-family: var(--serif);
+    font-size: 2rem;
+    font-weight: 900;
+    color: rgba(200,150,62,0.12);
+    line-height: 1;
+    z-index: 2;
+    pointer-events: none;
+  }
+  .project-featured-body {
+    padding: 2rem;
+    display: flex;
+    flex-direction: column;
+  }
+  .project-featured-footer {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-top: 1.2rem;
+    padding-top: 1rem;
+    border-top: 1px solid rgba(138,155,176,0.1);
+  }
+  @media (max-width: 900px) {
+    .project-card-featured { grid-template-columns: 1fr; }
+    .project-img-panel { min-height: 200px; border-right: none; border-bottom: 1px solid rgba(200,150,62,0.15); }
+  }
+
+  .project-card {
+    display: grid;
+    grid-template-columns: 80px 1fr auto;
+    gap: 2rem;
+    align-items: start;
+    padding: 2rem;
+    background: rgba(42,53,71,0.2);
+    border: 1px solid rgba(138,155,176,0.15);
+    position: relative;
+    transition: background 0.3s, border-color 0.3s;
+    cursor: default;
+  }
+
+  .project-card:hover {
+    background: rgba(42,53,71,0.4);
+    border-color: rgba(200,150,62,0.3);
+  }
 
   .project-card {
     display: grid;
@@ -1082,10 +1192,15 @@
   <h2 class="section-title">Serious games &<br>simulations.</h2>
   <div class="projects-list">
 
-    <!-- Project 1 -->
-    <div class="project-card">
-      <div class="project-num">01</div>
-      <div class="project-body">
+    <!-- Project 1 — Featured with image panel -->
+    <div class="project-card-featured">
+      <div class="project-img-panel">
+        <div class="img-corner-num">01</div>
+        <!-- Replace src below with your actual image path or URL -->
+        <img src="images/Stope_Screen_Shot.png" alt="Underground Mining Safety Simulation"> 
+       
+      </div>
+      <div class="project-featured-body">
         <div class="project-type">VR Serious Game · Industrial Safety · Deployed Commercially</div>
         <div class="project-title">Underground Mining Safety Simulation Suite</div>
         <div class="project-desc">A suite of VR serious games simulating critical underground mining operations — designed to develop psychomotor skills, reinforce safety protocols and build situational awareness in safety-critical environments. Deployed to blue-chip mining clients across three continents.</div>
@@ -1100,21 +1215,26 @@
             <li>Haptic feedback integration for tactile psychomotor skill development</li>
           </ul>
         </div>
-      </div>
-      <div class="project-meta">
-        <span class="meta-engine">Godot 4</span>
-        <span class="meta-tag">GDScript / C#</span>
-        <span class="meta-tag">VR / XR</span>
-        <span class="meta-tag">Safety Training</span>
-        <span class="meta-tag">3 Continents</span>
-        <span class="ip-badge">IP Protected — described by design intent</span>
+        <div class="project-featured-footer">
+          <span class="meta-engine">Godot 4</span>
+          <span class="meta-tag">GDScript / C#</span>
+          <span class="meta-tag">VR / XR</span>
+          <span class="meta-tag">Safety Training</span>
+          <span class="meta-tag">3 Continents</span>
+          <span class="ip-badge">IP Protected — described by design intent</span>
+        </div>
       </div>
     </div>
 
-    <!-- Project 2 -->
-    <div class="project-card">
-      <div class="project-num">02</div>
-      <div class="project-body">
+    <!-- Project 2 — Featured with image panel -->
+    <div class="project-card-featured">
+      <div class="project-img-panel">
+        <div class="img-corner-num">02</div>
+        <!-- Replace src below with your actual image path or URL -->
+        <img src="images/Multi_Player_Driving.png" alt="Multiplayer Driving Game"> 
+        
+      </div>
+      <div class="project-featured-body">
         <div class="project-type">Multiplayer Interactive Experience · Personal Project</div>
         <div class="project-title">Multiplayer Driving Game</div>
         <div class="project-desc">A real-time multiplayer driving experience demonstrating concurrent multi-user session management, networked physics synchronisation and competitive game mechanics. Built as a personal project to explore multiplayer architecture patterns applicable to policy simulation and collaborative serious game design.</div>
@@ -1127,17 +1247,17 @@
             <li>Performance-optimised rendering for smooth gameplay across hardware configurations</li>
           </ul>
         </div>
-      </div>
-      <div class="project-meta">
-        <span class="meta-engine">Unity 3D</span>
-        <span class="meta-tag">C# / Photon PUN</span>
-        <span class="meta-tag">Multiplayer</span>
-        <span class="meta-tag">Personal Project</span>
-        <span class="ip-badge">✓ Original Work — freely shareable</span>
+        <div class="project-featured-footer">
+          <span class="meta-engine">Unity 3D</span>
+          <span class="meta-tag">C# / Photon PUN</span>
+          <span class="meta-tag">Multiplayer</span>
+          <span class="meta-tag">Personal Project</span>
+          <span class="ip-badge">✓ Original Work — freely shareable</span>
+        </div>
       </div>
     </div>
 
-    <!-- Project 3 -->
+    <!-- Project 3 — VR Science Lab (standard card) -->
     <div class="project-card">
       <div class="project-num">03</div>
       <div class="project-body">
@@ -1163,10 +1283,15 @@
       </div>
     </div>
 
-    <!-- Project 4 -->
-    <div class="project-card">
-      <div class="project-num">04</div>
-      <div class="project-body">
+    <!-- Project 4 — Featured with image panel -->
+    <div class="project-card-featured">
+      <div class="project-img-panel">
+        <div class="img-corner-num">04</div>
+        <!-- Replace src below with your actual image path or URL -->
+        <img src="images/VR_MultiPlayer.png" alt="VR Multiplayer Game">
+       
+      </div>
+      <div class="project-featured-body">
         <div class="project-type">VR Gamification · Personal Project</div>
         <div class="project-title">VR Knowledge Quiz</div>
         <div class="project-desc">A gamified VR knowledge assessment experience — demonstrating how quiz-based learning can be transformed into an immersive, spatially engaging game rather than a flat screen interaction. Applicable to policy training, awareness campaigns and capacity development contexts.</div>
@@ -1179,13 +1304,13 @@
             <li>Applicable framework for policy knowledge assessment and awareness games</li>
           </ul>
         </div>
-      </div>
-      <div class="project-meta">
-        <span class="meta-engine">Unity 3D</span>
-        <span class="meta-tag">VR Gamification</span>
-        <span class="meta-tag">Assessment</span>
-        <span class="meta-tag">Personal Project</span>
-        <span class="ip-badge">✓ Original Work — freely shareable</span>
+        <div class="project-featured-footer">
+          <span class="meta-engine">Unity 3D</span>
+          <span class="meta-tag">VR Gamification</span>
+          <span class="meta-tag">Assessment</span>
+          <span class="meta-tag">Personal Project</span>
+          <span class="ip-badge">✓ Original Work — freely shareable</span>
+        </div>
       </div>
     </div>
 
