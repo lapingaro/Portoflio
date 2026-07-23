@@ -1314,9 +1314,42 @@
       </div>
     </div>
 
-    <!-- Project 5 -->
+    <!-- Project 5 — Featured with image panel (landscape image) -->
+    <div class="project-card-featured">
+      <div class="project-img-panel" style="background: rgba(13,13,20,0.9);">
+        <div class="img-corner-num">05</div>
+        <img src="images/ppe_selection_image.png" alt="PPE Selection Module" style="object-fit: contain; object-position: center; padding: 0.5rem;">
+      </div>
+      <div class="project-featured-body">
+        <div class="project-type">Godot Editor Plugin · PPE Selection System · Tool Development</div>
+        <div class="project-title">PPE Selection Module for Mining Safety Training</div>
+        <div class="project-desc">A Godot 4 Editor Plugin and runtime system for selecting, equipping and grading Personal Protective Equipment (PPE) in VR mining safety simulations. The system combines an editor dock for defining task-based and hazard-based PPE requirements with an in-game runtime that includes a 6-category selection UI, character preview and a three-state visual feedback system for training assessment.</div>
+        <div class="project-mechanics">
+          <div class="project-mechanics-title">Game Mechanics & Design Elements</div>
+          <ul class="mechanic-list">
+            <li>Dual-layer architecture — editor tool (JSON data authoring) decoupled from runtime system (.tres resource-based) for type-safe in-game selection</li>
+            <li>Task-based and hazard-based rule engine — PPE requirements combine from both inputs with automatic deduplication</li>
+            <li>6-category selection system (HAT, EYE, EAR, HANDS, FEET, KNEES) with per-category scrollable rows and character preview slots</li>
+            <li>Equip-lock mechanism — selections locked after first confirmation, preventing changes in training/graded scenarios</li>
+            <li>Three-state result feedback — green border (correct selected), red border (incorrect selected), light green (correct but missed)</li>
+            <li>Singleton state manager (PPEManager) with persistent save/load to JSON, supporting session continuity</li>
+            <li>Planned TaskManager integration via PPETaskValidator bridge — single-task pass/fail grading for all PPE categories</li>
+          </ul>
+        </div>
+        <div class="project-featured-footer">
+          <span class="meta-engine">Godot 4</span>
+          <span class="meta-tag">GDScript</span>
+          <span class="meta-tag">Editor Plugin</span>
+          <span class="meta-tag">PPE Safety</span>
+          <span class="meta-tag">Training Simulation</span>
+          <span class="ip-badge">IP Protected — described by design intent</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Project 6 -->
     <div class="project-card">
-      <div class="project-num">05</div>
+      <div class="project-num">06</div>
       <div class="project-body">
         <div class="project-type">Physical + Digital Serious Game · Educational</div>
         <div class="project-title">Robotics Challenge Game Series</div>
