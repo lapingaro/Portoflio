@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Behint Benjamin Christopher — Portfolio</title>
+<title>Behint Benjamin Christopher — Senior 3D & XR Software Engineer</title>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=DM+Mono:wght@300;400;500&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
 <style>
   :root {
@@ -168,6 +168,49 @@
   .badge-mist  { border-color: var(--mist);   color: var(--mist); }
   .badge-accent{ border-color: var(--accent); color: var(--accent); }
   .badge-green { border-color: var(--green);  color: #52b788; }
+
+
+  .hero-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.8rem;
+    margin-top: 1.4rem;
+    opacity: 0;
+    animation: fadeUp 0.8s 1s forwards;
+  }
+
+  .hero-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.75rem 1rem;
+    border: 1px solid rgba(200,150,62,0.45);
+    color: var(--paper);
+    text-decoration: none;
+    font-family: var(--mono);
+    font-size: 0.65rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    transition: background 0.2s, border-color 0.2s, color 0.2s;
+  }
+
+  .hero-btn:hover {
+    background: rgba(200,150,62,0.12);
+    border-color: var(--gold);
+    color: var(--gold-lt);
+  }
+
+  .hero-btn-primary {
+    background: var(--gold);
+    color: var(--ink);
+    border-color: var(--gold);
+    font-weight: 500;
+  }
+
+  .hero-btn-primary:hover {
+    background: var(--gold-lt);
+    color: var(--ink);
+  }
 
   .hero-scroll {
     position: absolute;
@@ -1055,7 +1098,7 @@
     <li><a href="#about">About</a></li>
     <li><a href="#expertise">Expertise</a></li>
     <li><a href="#projects">Projects</a></li>
-    <li><a href="#process">Game Design</a></li>
+    <li><a href="#process">Approach</a></li>
     <li><a href="#experience">Experience</a></li>
     <li><a href="#certifications">Credentials</a></li>
     <li><a href="#contact">Contact</a></li>
@@ -1065,16 +1108,21 @@
 <!-- HERO -->
 <div class="hero">
   <div class="hero-grid"></div>
-  <div class="hero-tag">Portfolio · Serious Game & VR Simulation Specialist</div>
+  <div class="hero-tag">Senior 3D Software Engineer · Industrial Simulation · XR/VR</div>
   <h1 class="hero-name">Behint<br><span>Benjamin</span><br>Christopher</h1>
-  <p class="hero-title">Game designer, immersive learning architect and VR simulation developer — translating complex real-world systems into engaging, human-centred interactive experiences.</p>
+  <p class="hero-title">Senior software engineer specialised in industrial 3D simulation, XR/VR and immersive training — building robust, high-performance solutions for mining, education and complex operational environments.</p>
   <div class="hero-badges">
-    <span class="badge badge-gold">Serious Game Design</span>
+    <span class="badge badge-gold">Industrial 3D Simulation</span>
     <span class="badge badge-gold">VR / XR Simulation</span>
     <span class="badge badge-mist">Godot · Unity 3D</span>
-    <span class="badge badge-mist">Participatory Facilitation</span>
-    <span class="badge badge-accent">French C2 · English C</span>
-    <span class="badge badge-green">Gabon · South Africa</span>
+    <span class="badge badge-mist">C# · GDScript · OpenXR</span>
+    <span class="badge badge-accent">French · English C1+</span>
+    <span class="badge badge-green">Gabonese · International Experience</span>
+  </div>
+  <div class="hero-actions">
+    <a class="hero-btn hero-btn-primary" href="#projects">View industrial projects →</a>
+    <a class="hero-btn" href="mailto:chrisbehint@gmail.com">Contact me</a>
+    <a class="hero-btn" href="https://github.com/lapingaro" target="_blank" rel="noopener noreferrer">GitHub</a>
   </div>
   <div class="hero-scroll">Scroll</div>
 </div>
@@ -1082,18 +1130,18 @@
 <!-- ABOUT -->
 <section id="about">
   <div class="section-label">01 · About</div>
-  <h2 class="section-title">Turning complexity<br>into play.</h2>
+  <h2 class="section-title">Engineering immersive<br>industrial experiences.</h2>
   <div class="about-grid">
     <div class="about-text">
-      <p>I am a <strong>creative technologist and serious game designer</strong> with over 6 years of experience building immersive simulations, game-based learning environments and interactive 3D platforms that make complex systems understandable, engaging and actionable.</p>
-      <p>Currently at <strong>STS3D</strong>, I design and develop VR training simulations for the global mining and industrial sector using <strong>Godot</strong> as the primary engine — applying game mechanics, branching scenario design and psychomotor learning principles to create safety-critical training experiences deployed across South Africa, Argentina and Kazakhstan.</p>
-      <p>Born and raised in <strong>Gabon</strong> — a Central African nation with rich agrifood and ecological systems — and having built my career in South Africa, I bring a deep cross-cultural perspective and genuine bilingual (French C2 / English C) facilitation capability to every project.</p>
-      <p>My work sits at the intersection of <strong>game design, instructional design and immersive technology</strong> — and I am passionate about applying this to high-stakes policy, development and learning challenges.</p>
+      <p>I am a <strong>senior 3D software engineer</strong> with over 6 years of production experience building industrial simulations, XR/VR applications and interactive 3D platforms. My work spans software architecture, real-time graphics, performance optimisation and immersive training.</p>
+      <p>Currently at <strong>STS3D</strong>, I design and develop high-fidelity 3D simulations for the mining sector using <strong>Godot</strong>, GDScript and C#. My work includes scalable scene architecture, realistic interactions, XR hardware integration and performance optimisation for training solutions deployed internationally.</p>
+      <p>As a <strong>Gabonese professional</strong> with an international career developed in South Africa, I bring strong cross-cultural communication skills and professional fluency in both French and English.</p>
+      <p>My work sits at the intersection of <strong>software engineering, industrial simulation and immersive technology</strong>. I am particularly interested in mining, energy, industrial safety, digital transformation and next-generation training systems.</p>
     </div>
     <div class="stats-grid">
       <div class="stat-card">
         <div class="stat-num">6+</div>
-        <div class="stat-label">Years designing immersive experiences</div>
+        <div class="stat-label">Years in 3D/XR production</div>
       </div>
       <div class="stat-card">
         <div class="stat-num">3</div>
@@ -1101,11 +1149,11 @@
       </div>
       <div class="stat-card">
         <div class="stat-num">2</div>
-        <div class="stat-label">Languages — French (native) & English (C)</div>
+        <div class="stat-label">Languages — French & English (C1+)</div>
       </div>
       <div class="stat-card">
         <div class="stat-num">8+</div>
-        <div class="stat-label">Serious game & simulation projects delivered</div>
+        <div class="stat-label">3D / XR projects delivered</div>
       </div>
     </div>
   </div>
@@ -1124,7 +1172,7 @@
       <div class="exp-title">Serious Game Design</div>
       <div class="exp-desc">Game mechanics, narrative structures, branching scenario design, consequence-based feedback systems and pedagogical frameworks tailored to complex real-world challenges.</div>
       <div class="exp-tags">
-        <span class="exp-tag">Mechanics Design</span>
+        <span class="exp-tag">System Architecture</span>
         <span class="exp-tag">Narrative</span>
         <span class="exp-tag">Pedagogy</span>
         <span class="exp-tag">Scenario Writing</span>
@@ -1143,22 +1191,22 @@
     </div>
     <div class="exp-card">
       <div class="exp-icon">🧭</div>
-      <div class="exp-title">Facilitation & Debriefing</div>
-      <div class="exp-desc">Facilitating immersive simulation experiences for diverse stakeholder groups — managing group dynamics, structured debriefing and translating game insights into actionable real-world outcomes.</div>
+      <div class="exp-title">Software Architecture</div>
+      <div class="exp-desc">Designing maintainable, modular architectures for complex 3D applications — reusable scene systems, design patterns, API integration, code reviews and scalable project structures.</div>
       <div class="exp-tags">
-        <span class="exp-tag">Debriefing</span>
-        <span class="exp-tag">Stakeholder Engagement</span>
-        <span class="exp-tag">Co-creation</span>
+        <span class="exp-tag">Design Patterns</span>
+        <span class="exp-tag">Code Review</span>
+        <span class="exp-tag">Reusable Systems</span>
       </div>
     </div>
     <div class="exp-card">
       <div class="exp-icon">🌍</div>
-      <div class="exp-title">Cross-Cultural Design</div>
-      <div class="exp-desc">Adapting game content and facilitation for diverse cultural, linguistic and professional audiences — with direct experience across Francophone Africa, Southern Africa, South America and Central Asia.</div>
+      <div class="exp-title">Performance Optimisation</div>
+      <div class="exp-desc">Profiling and optimising real-time 3D applications for mobile and XR hardware — LOD, occlusion culling, draw-call reduction, memory management and shader optimisation.</div>
       <div class="exp-tags">
-        <span class="exp-tag">French C2</span>
-        <span class="exp-tag">English C</span>
-        <span class="exp-tag">Multicultural</span>
+        <span class="exp-tag">GPU Profiling</span>
+        <span class="exp-tag">LOD / Culling</span>
+        <span class="exp-tag">XR Performance</span>
       </div>
     </div>
     <div class="exp-card">
@@ -1174,12 +1222,12 @@
     </div>
     <div class="exp-card">
       <div class="exp-icon">📋</div>
-      <div class="exp-title">Capacity Development</div>
-      <div class="exp-desc">Designing and delivering training programmes, methodological guidelines and documentation for game-based facilitation — supporting partners and staff to integrate serious games into their own programmes.</div>
+      <div class="exp-title">Technical Leadership</div>
+      <div class="exp-desc">Supporting engineering teams through mentoring, code reviews, technical documentation and architectural decisions in Agile international environments.</div>
       <div class="exp-tags">
-        <span class="exp-tag">Training Design</span>
+        <span class="exp-tag">Agile / Scrum</span>
         <span class="exp-tag">Documentation</span>
-        <span class="exp-tag">Mentoring</span>
+        <span class="exp-tag">Agile / Scrum</span>
       </div>
     </div>
   </div>
@@ -1237,13 +1285,13 @@
       <div class="project-featured-body">
         <div class="project-type">Multiplayer Interactive Experience · Personal Project</div>
         <div class="project-title">Multiplayer Driving Game</div>
-        <div class="project-desc">A real-time multiplayer driving experience demonstrating concurrent multi-user session management, networked physics synchronisation and competitive game mechanics. Built as a personal project to explore multiplayer architecture patterns applicable to policy simulation and collaborative serious game design.</div>
+        <div class="project-desc">A real-time multiplayer driving experience demonstrating concurrent multi-user session management, networked physics synchronisation and competitive interaction. Built as a personal project to explore scalable multiplayer architecture patterns for interactive 3D applications.</div>
         <div class="project-mechanics">
           <div class="project-mechanics-title">Game Mechanics & Design Elements</div>
           <ul class="mechanic-list">
             <li>Real-time multiplayer using Photon PUN — low-latency state synchronisation across concurrent players</li>
             <li>Shared physical environment with collision, consequence and competitive scoring mechanics</li>
-            <li>Session management system supporting variable player counts — applicable to multi-stakeholder policy simulations</li>
+            <li>Session management system supporting variable player counts and synchronised multiplayer state</li>
             <li>Performance-optimised rendering for smooth gameplay across hardware configurations</li>
           </ul>
         </div>
@@ -1297,14 +1345,14 @@
       <div class="project-featured-body">
         <div class="project-type">VR Gamification · Personal Project</div>
         <div class="project-title">VR Knowledge Quiz</div>
-        <div class="project-desc">A gamified VR knowledge assessment experience — demonstrating how quiz-based learning can be transformed into an immersive, spatially engaging game rather than a flat screen interaction. Applicable to policy training, awareness campaigns and capacity development contexts.</div>
+        <div class="project-desc">A gamified VR knowledge assessment experience demonstrating how conventional training content can be transformed into an immersive, spatially engaging interaction with measurable feedback and progression.</div>
         <div class="project-mechanics">
           <div class="project-mechanics-title">Game Mechanics & Design Elements</div>
           <ul class="mechanic-list">
             <li>Spatial answer selection mechanics — physically navigating to answers in 3D space</li>
             <li>Time-pressure mechanics with adaptive difficulty based on performance</li>
             <li>Score feedback and progress visualisation in virtual environment</li>
-            <li>Applicable framework for policy knowledge assessment and awareness games</li>
+            <li>Reusable framework for immersive knowledge assessment, onboarding and safety-awareness training</li>
           </ul>
         </div>
         <div class="project-featured-footer">
@@ -1388,49 +1436,49 @@
 <!-- GAME DESIGN PROCESS -->
 <div class="process-bg">
 <section id="process" style="max-width:1200px;margin:0 auto;">
-  <div class="section-label">04 · Methodology</div>
-  <h2 class="section-title">My serious game<br>design process.</h2>
+  <div class="section-label">04 · Engineering Approach</div>
+  <h2 class="section-title">How I build<br>simulation systems.</h2>
 
   <div class="process-steps">
     <div class="step">
       <div class="step-dot">01</div>
-      <div class="step-title">Needs Analysis</div>
-      <div class="step-desc">Understand the learning objective, target audience, context and constraints through stakeholder interviews and systems mapping.</div>
+      <div class="step-title">Requirements & Constraints</div>
+      <div class="step-desc">Clarify operational goals, users, hardware constraints, safety requirements and success criteria with domain stakeholders.</div>
     </div>
     <div class="step">
       <div class="step-dot">02</div>
-      <div class="step-title">Mechanics Design</div>
-      <div class="step-desc">Define core game loop, feedback systems, branching logic, win/lose conditions and how mechanics mirror real-world decisions.</div>
+      <div class="step-title">System Architecture</div>
+      <div class="step-desc">Define scene hierarchy, software modules, data flow, interaction systems and interfaces before production implementation.</div>
     </div>
     <div class="step">
       <div class="step-dot">03</div>
-      <div class="step-title">Prototype & Test</div>
-      <div class="step-desc">Build a rapid prototype — physical or digital — and test with a small group to validate that mechanics produce intended learning behaviours.</div>
+      <div class="step-title">Prototype & Validate</div>
+      <div class="step-desc">Build focused prototypes to validate interactions, performance budgets, hardware integration and technical risk early.</div>
     </div>
     <div class="step">
       <div class="step-dot">04</div>
-      <div class="step-title">Develop & Refine</div>
-      <div class="step-desc">Full development in Godot or Unity, integrating narrative, 3D assets, VR hardware and performance optimisation. Iterative refinement with stakeholders.</div>
+      <div class="step-title">Develop & Optimise</div>
+      <div class="step-desc">Develop production systems in Godot or Unity, integrate 3D/XR hardware, profile bottlenecks and iterate with stakeholders.</div>
     </div>
     <div class="step">
       <div class="step-dot">05</div>
-      <div class="step-title">Facilitate & Debrief</div>
-      <div class="step-desc">Run the session, manage group dynamics and lead structured debriefing — bridging game experiences to real-world insights and actionable outcomes.</div>
+      <div class="step-title">Deploy & Improve</div>
+      <div class="step-desc">Ship, document and support the solution, then use field feedback and performance data to guide continuous improvement.</div>
     </div>
   </div>
 
   <div class="process-principles">
     <div class="principle">
-      <div class="principle-title">Consequence-Driven Design</div>
-      <div class="principle-desc">Every decision in a serious game should have a meaningful consequence that reflects real-world outcomes. Players learn through cause-and-effect, not instruction.</div>
+      <div class="principle-title">Real-World Fidelity</div>
+      <div class="principle-desc">Simulation behaviour should mirror operational logic closely enough to create meaningful, transferable training outcomes.</div>
     </div>
     <div class="principle">
-      <div class="principle-title">The Debrief is the Game</div>
-      <div class="principle-desc">The play session generates the experience; the debrief generates the insight. I design both the game mechanics and the facilitation framework as inseparable parts of the learning experience.</div>
+      <div class="principle-title">Performance by Design</div>
+      <div class="principle-desc">Performance is treated as an architectural requirement from the start, especially for mobile and XR targets with strict GPU and memory budgets.</div>
     </div>
     <div class="principle">
-      <div class="principle-title">Context Before Content</div>
-      <div class="principle-desc">Games that work in one cultural context may fail in another. I design for specific audiences, adapting language, metaphor, complexity and mechanic style to the learners — not a generic template.</div>
+      <div class="principle-title">Modular & Maintainable</div>
+      <div class="principle-desc">Reusable components, clear data ownership and maintainable code reduce delivery risk and make complex simulation suites easier to scale.</div>
     </div>
   </div>
 </section>
@@ -1444,25 +1492,25 @@
 
     <div class="timeline-item">
       <div class="timeline-period">May 2024 — Present</div>
-      <div class="timeline-role">Serious Game Developer & VR Simulation Designer</div>
+      <div class="timeline-role">3D Simulation Developer</div>
       <div class="timeline-org">STS3D (Simulated Training Solutions) · South Africa · sts3d.co.za</div>
       <ul class="timeline-points">
-        <li>Designing and developing VR serious games for global mining safety training using Godot — branching scenarios, consequence mechanics and psychomotor skill development</li>
-        <li>Collaborating with instructional designers, mining SMEs and 3D artists in Agile sprints to co-create pedagogically grounded simulation products</li>
-        <li>Adapting game content and facilitation approaches for culturally diverse audiences across South Africa, Argentina and Kazakhstan</li>
-        <li>Delivering capacity development support and technical documentation for simulation platforms</li>
+        <li>Designing and developing high-fidelity industrial 3D simulations for mining training using Godot, GDScript and C#</li>
+        <li>Building scalable scene architectures, realistic physical interactions and reusable simulation systems in Agile production workflows</li>
+        <li>Optimising rendering and application performance for XR hardware using LOD, occlusion culling, draw-call reduction and memory management</li>
+        <li>Integrating VR and haptic hardware while contributing to code reviews, version control and technical documentation</li>
       </ul>
     </div>
 
     <div class="timeline-item">
       <div class="timeline-period">September 2020 — April 2024</div>
-      <div class="timeline-role">Interactive Experience Designer & XR Developer</div>
+      <div class="timeline-role">Lead XR Developer & Platform Lead</div>
       <div class="timeline-org">GO4IR · Bryanston, Johannesburg</div>
       <ul class="timeline-points">
-        <li>Designed and shipped interactive 3D/XR game-based experiences for education, industrial training and public engagement</li>
-        <li>Built multiplayer interactive environments for real-time collaborative participation — applicable to policy simulation design</li>
-        <li>Facilitated client demonstrations and training sessions for French and English-speaking stakeholders</li>
-        <li>Mentored junior developers in game design and experiential learning principles</li>
+        <li>Designed and shipped end-to-end 3D/XR applications for industrial, educational and training clients using Unity and C#</li>
+        <li>Built real-time multiplayer systems with Photon PUN, REST APIs and synchronised network state</li>
+        <li>Integrated ARKit, ARCore, Meta Quest, Apple Vision Pro and Google Cardboard across multiple delivery platforms</li>
+        <li>Mentored junior developers, led code reviews and contributed to architecture and technical delivery decisions</li>
       </ul>
     </div>
 
@@ -1506,7 +1554,7 @@
     </div>
     <div class="skill-group">
       <div class="skill-group-title">Serious Game Design</div>
-      <div class="skill-item"><span class="skill-name">Game Mechanics Design</span><div class="skill-bar"><div class="skill-fill" style="width:85%"></div></div></div>
+      <div class="skill-item"><span class="skill-name">Game System Architecture</span><div class="skill-bar"><div class="skill-fill" style="width:85%"></div></div></div>
       <div class="skill-item"><span class="skill-name">Scenario & Narrative Writing</span><div class="skill-bar"><div class="skill-fill" style="width:80%"></div></div></div>
       <div class="skill-item"><span class="skill-name">Participatory Facilitation</span><div class="skill-bar"><div class="skill-fill" style="width:82%"></div></div></div>
       <div class="skill-item"><span class="skill-name">Debriefing & Insight Capture</span><div class="skill-bar"><div class="skill-fill" style="width:78%"></div></div></div>
@@ -1536,13 +1584,13 @@
     <div class="lang-grid">
       <div class="lang-card">
         <div class="lang-name">Français</div>
-        <div class="lang-level">C2 — Native</div>
-        <div class="lang-note">Born and educated in Gabon. First language. Full facilitation capability in Francophone contexts.</div>
+        <div class="lang-level">Fluent / Professional</div>
+        <div class="lang-note">Professional fluency for technical communication, documentation and collaboration.</div>
       </div>
       <div class="lang-card">
         <div class="lang-name">English</div>
-        <div class="lang-level">C — Full Professional</div>
-        <div class="lang-note">6+ years professional use across South Africa and international clients. Business, technical and facilitation fluency.</div>
+        <div class="lang-level">C1+ — Full Professional</div>
+        <div class="lang-note">6+ years of professional use in international engineering teams and client environments.</div>
       </div>
     </div>
   </div>
@@ -1567,7 +1615,7 @@
         <div class="cert-name">Google IT Automation with Python — Professional Certificate</div>
         <div class="cert-issuer">Google / Coursera · Verified on Credly · 2024</div>
         <div class="cert-modules">Python scripting · Git & GitHub · IT automation · Configuration management (Puppet) · REST API automation · Cloud computing · End-to-end automation projects</div>
-        <a class="cert-link" href="https://www.credly.com/badges/819d21e1-26e9-4f87-9c1d-316d79632db2/public_url" target="_blank">Verify certificate →</a>
+        <a class="cert-link" href="https://www.credly.com/badges/819d21e1-26e9-4f87-9c1d-316d79632db2/public_url" target="_blank" rel="noopener noreferrer">Verify certificate →</a>
       </div>
     </div>
     <div class="cert-card">
@@ -1597,8 +1645,8 @@
       <div class="section-label">08 · Contact</div>
       <h2 class="contact-heading">Let's build<br>something that<br><span>matters.</span></h2>
       <div class="fao-note">
-        <div class="fao-note-title">📎 FAO Application — Vacancy 2601062</div>
-        <div class="fao-note-text">This portfolio has been prepared in support of the application for Serious Game and Policy Game Specialist (ID: 2601062) at the FAO Office of Innovation. A full CV, letter of motivation and additional portfolio materials are available on request.</div>
+        <div class="fao-note-title">Open to industrial & technology opportunities</div>
+        <div class="fao-note-text">Available for senior software engineering, industrial simulation, XR/VR, digital training and innovation opportunities in Gabon and internationally. CV and additional project details are available on request.</div>
       </div>
     </div>
     <div class="contact-links">
@@ -1610,17 +1658,17 @@
         <span class="contact-item-label">Phone</span>
         +27 73 592 6405
       </a>
-      <a class="contact-item" href="https://www.linkedin.com/in/behint-benjamin-74aab276/" target="_blank">
+      <a class="contact-item" href="https://www.linkedin.com/in/behint-benjamin-74aab276/" target="_blank" rel="noopener noreferrer">
         <span class="contact-item-label">LinkedIn</span>
         behint-benjamin-74aab276
       </a>
-      <a class="contact-item" href="https://github.com/lapingaro" target="_blank">
+      <a class="contact-item" href="https://github.com/lapingaro" target="_blank" rel="noopener noreferrer">
         <span class="contact-item-label">GitHub</span>
         github.com/lapingaro
       </a>
-      <a class="contact-item" href="https://65c626e93d178.site123.me/" target="_blank">
+      <a class="contact-item" href="https://seriousgamedev.netlify.app/" target="_blank" rel="noopener noreferrer">
         <span class="contact-item-label">Portfolio</span>
-        65c626e93d178.site123.me
+        seriousgamedev.netlify.app
       </a>
       <div class="contact-item" style="cursor:default;">
         <span class="contact-item-label">Location</span>
@@ -1632,7 +1680,7 @@
 </div>
 
 <div class="footer">
-  © 2026 Behint Benjamin Christopher · Serious Game & VR Simulation Specialist · Portfolio v1.0
+  © 2026 Behint Benjamin Christopher · Senior 3D & XR Software Engineer · Portfolio
 </div>
 
 </body>
